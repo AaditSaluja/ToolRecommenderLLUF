@@ -45,7 +45,7 @@ function CheckData({ data, apkey}) {
     
     }
     const sendToGPT = async () => {
-        let message = "Hi, I want you to help me decide what tool I would enjoy learning the most out of Adobe Illustrator, Adobe Photoshop, Canva, React/Next JS, Blender, Adobe Premiere, and any tool of your choice based on some of things I like. Answer briefly in 2-3 lines.  ";
+        let message = "Hi, I want you to help me decide what tool I would enjoy learning the most out of Adobe Illustrator, React/Next JS, Blender, Adobe Premiere, Adobe Photoshop, Canva, Adobe After Effects, Unity, Powerpoint and any tool of your choice based on some of things I like. Answer briefly in 2-3 lines.  ";
         for(let i = 0; i < data.length; i++){
             if(pressedButtons[i] == null){
                 console.log("Please select all options");
