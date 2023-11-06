@@ -1,7 +1,6 @@
 "use client"; 
 import { useState, useEffect } from 'react';
 import DisplayData from './Button.js';
-import Alert from "./Alert.js";
 import OpenAI from "openai";
 
 function WaitingScreen() {
