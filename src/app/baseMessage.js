@@ -1,1 +1,0 @@
-message = "Hi, I want you to help me decide what tool I would enjoy learning the most out of Adobe Illustrator, Adobe Photoshop, Canva, React/Next JS, Blender, Adobe Premiere, and any tool of your choice based on some of things I like. The things I like would be coming your way soon! No need to respond to this message. ";
