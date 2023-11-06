@@ -1,6 +1,40 @@
-import Image from 'next/image'
 
-export default function Home() {
+
+import Image from 'next/image'
+import Airtable from 'airtable';
+import { table } from "../utils/airtable.js";
+import CheckData from "./page.client.js"
+
+// import OpenAI from "openai";
+
+// const openai = new OpenAI({apiKey: process.env.GPT_API_KEY, dangerouslyAllowBrowser: true});
+
+async function getData() {
+  // console.log("getStaticProps");
+  console.log("Hello")
+  const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_ACCESS_TOKEN }).base(
+    process.env.AIRTABLE_BASE_ID
+  );
+  // const fields = "Hello";
+  const records = await base("BinaryTest").select({ view: "Main" }).all();
+  // console.log(JSON.stringify(records, null, 4))
+  const fields = records
+    .filter((item) => Object.keys(item.fields).length !== 0) // exclude items where fields is empty
+    .map((item) => item.fields);
+    // console.log(JSON.stringify(fields, null, 4))
+
+
+  
+
+  return {
+    data: JSON.parse(JSON.stringify(fields))
+    // props: {
+    //   data: JSON.parse(JSON.stringify(fields)),
+    // },
+  };
+}
+
+export function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -111,3 +145,57 @@ export default function Home() {
     </main>
   )
 }
+
+
+
+// export default async function Page() {
+
+//   const [clickedButtons, setClickedButtons] = useState([]);
+//   const handleButtonClick = (buttonData) => {
+//     setClickedButtons([...clickedButtons, buttonData]);
+//   };
+
+//   const props = await getData();
+//   console.log("1223");
+//   console.log(props.data);
+//   // console.log(props.data["Option1"]);
+//   console.log("1234");
+//   return (
+//     <div className="flex flex-col items-center justify-center min-h-screen">
+//       <p className='title'> Tool Recommender </p>
+
+//       <div>
+//       <DisplayData data={props.data} onButtonClick={handleButtonClick}/>
+
+//       </div>
+//     </div>
+    
+//   )
+// }
+
+export default async function Page() {
+
+  const props = await getData();
+  // const completion = await openai.chat.completions.create({
+  //   messages: [{ role: "system", content: "Hi, I want you to help me decide what tool I would enjoy learning the most out of Adobe Illustrator, Adobe Photoshop, Canva, React/Next JS, Blender, Adobe Premiere, and any tool of your choice based on some of things I like. The things I like would be coming your way soon! No need to respond to this message." }],
+  //   model: "gpt-4",
+  // });
+  // console.log(completion.choices[0]);
+  // // console.log(props.data["Option1"]);
+
+  // console.log(completion2.choices[0]);
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <p className='title'> Tool Recommender </p>
+
+      <div>
+        <CheckData data={props.data} apkey = {process.env.GPT_API_KEY}/>
+      {/* <DisplayData data={props.data} onButtonClick={handleButtonClick}/> */}
+
+      </div>
+    </div>
+    
+  )
+}
+
+

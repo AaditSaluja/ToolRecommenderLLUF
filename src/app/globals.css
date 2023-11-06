@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -18,10 +20,46 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+  background-color: #75dddd;
+
+}
+
+.title{
+  font-size: 80px;
+  font-weight: 800;
+  vertical-align: top;
+  margin: 5vh 0 5vh 0;
+}
+
+.button{
+  height: 10vh;
+  color: #1e3939;
+  background-color: #ffffff;
+}
+.button:hover{
+  transition: all 0.5s;
+  color: #fff;
+  background-color: #2F5858;
+}
+.active-button{
+  color: #fff;
+  background-color: #2F5858;
+  transition: all 0.5s;
+}
+
+.submit-button{
+  height: 8vh;
+  color: #fff;
+  background-color: #fe6626;
+  padding: 10px;
+  margin: 20px 10px 100px 10px;
+  border-radius: 30px;
+  width: 10vw;
+  float: right;
 }
